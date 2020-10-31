@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLightHouse));
             this.panelColourSign = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -38,13 +39,14 @@
             this.panelColourSign.Size = new System.Drawing.Size(265, 174);
             this.panelColourSign.TabIndex = 0;
             // 
-            // FormColorFlag
+            // FormLightHouse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(291, 201);
             this.Controls.Add(this.panelColourSign);
-            this.Name = "FormColorFlag";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "FormLightHouse";
             this.Text = "LightHouse";
             this.ResumeLayout(false);
 
