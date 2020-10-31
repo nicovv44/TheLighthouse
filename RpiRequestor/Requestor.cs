@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -70,7 +71,7 @@ namespace RpiRequestor
                 {
                     Result = Get(Uri);
                 }
-                ResultReadyCallback();
+                if(Result.Length>0) ResultReadyCallback();
                 if (worker.CancellationPending)
                 {
                     return;
@@ -80,13 +81,21 @@ namespace RpiRequestor
 
         private string Get(string uri)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-            using HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            using Stream stream = response.GetResponseStream();
-            using StreamReader reader = new StreamReader(stream);
-            return reader.ReadToEnd();
+                using HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                using Stream stream = response.GetResponseStream();
+                using StreamReader reader = new StreamReader(stream);
+                return reader.ReadToEnd();
+            }
+            catch(Exception exception)
+            {
+                Trace.WriteLine($"Exception in Requestor.Get(): '{exception.Message}'");
+                return "";
+            }
         }
     }
 }
