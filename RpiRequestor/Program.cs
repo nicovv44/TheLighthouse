@@ -19,7 +19,7 @@ namespace RpiRequestor
             Application.SetCompatibleTextRenderingDefault(false);
             string defaultRaspberryPiUri = "http://192.168.45.118";
             string uri = GetUri(defaultRaspberryPiUri);
-            FormColorFlag form1 = new FormColorFlag(uri) { TopMost = true };
+            FormLightHouse form1 = new FormLightHouse(uri) { TopMost = true };
             Application.Run(form1);
         }
 

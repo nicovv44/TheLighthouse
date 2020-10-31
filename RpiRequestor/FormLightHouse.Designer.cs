@@ -1,6 +1,6 @@
 ﻿namespace RpiRequestor
 {
-    partial class FormColorFlag
+    partial class FormLightHouse
     {
         /// <summary>
         ///  Required designer variable.

@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace RpiRequestor
 {
-    public partial class FormColorFlag : Form
+    public partial class FormLightHouse : Form
     {
         private readonly Requestor Requestor;
-        public FormColorFlag(string uri)
+        public FormLightHouse(string uri)
         {
             // Initialise non GUI
             Requestor = new Requestor(uri, UpdateGuiWithNewResult);
