@@ -38,14 +38,14 @@
             this.panelColourSign.Size = new System.Drawing.Size(265, 174);
             this.panelColourSign.TabIndex = 0;
             // 
-            // Form1
+            // FormColorFlag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(291, 201);
             this.Controls.Add(this.panelColourSign);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormColorFlag";
+            this.Text = "LightHouse";
             this.ResumeLayout(false);
 
         }
