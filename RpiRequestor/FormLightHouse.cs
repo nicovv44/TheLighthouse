@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -71,6 +72,8 @@ namespace RpiRequestor
                     panelColourSign.BackColor = Color.Transparent;
                     RestartFreshnessStopWatch();
                 }
+
+                Thread.Sleep(100);
 
                 if (worker.CancellationPending)
                 {
