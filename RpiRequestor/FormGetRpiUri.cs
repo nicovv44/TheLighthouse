@@ -17,12 +17,12 @@ namespace RpiRequestor
             textBoxUri.Text = defaultUri;
         }
 
-        private void textBoxUri_TextChanged(object sender, EventArgs e)
+        private void TextBoxUri_TextChanged(object sender, EventArgs e)
         {
             Uri = (sender as TextBox).Text;
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ButtonOk_Click(object sender, EventArgs e)
         {
             Close();
         }

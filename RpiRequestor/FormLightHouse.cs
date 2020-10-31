@@ -14,9 +14,9 @@ namespace RpiRequestor
     public partial class FormLightHouse : Form
     {
         private readonly Requestor Requestor;
-        private Stopwatch FreshnessStopwatch;
+        private readonly Stopwatch FreshnessStopwatch;
         private readonly object FreshnessStopwatchLock = new object();
-        private BackgroundWorker CheckFreshnessWorker;
+        private readonly BackgroundWorker CheckFreshnessWorker;
         public FormLightHouse(string uri)
         {
             // Initialise non GUI
