@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpiRequestor", "RpiRequestor\RpiRequestor.csproj", "{9C3C4617-23C9-47FE-BCEE-84861BBE45BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLighthouse", "RpiRequestor\TheLighthouse.csproj", "{9C3C4617-23C9-47FE-BCEE-84861BBE45BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
