@@ -17,8 +17,7 @@ namespace RpiRequestor
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string defaultRaspberryPiUri = "http://192.168.45.118";
-            string uri = GetUri(defaultRaspberryPiUri);
+            string uri = GetUri(TheLighthouse.Properties.Resources.Uri);
             FormLightHouse form1 = new FormLightHouse(uri) { TopMost = true };
             Application.Run(form1);
         }
