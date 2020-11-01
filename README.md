@@ -39,6 +39,8 @@ The idea is to use this window color as a discrete signal when someone (your bos
 
 ## Contributing
 
+Contribute page: https://github.com/nicovv44/TheLighthouse/contribute
+
 If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 If you'd like to modify the API you can modify the function *private void UpdateGuiWithNewResult(string result)*: https://github.com/nicovv44/TheLighthouse/blob/05a2df3255cd8e1d0021cb726619e4715afe4ade/RpiRequestor/Forms/FormLightHouse.cs#L69
