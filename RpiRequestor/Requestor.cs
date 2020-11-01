@@ -72,6 +72,9 @@ namespace TheLighthouse
             ResultReadyCallback = resultReadyCallback;
         }
 
+        /// <summary>
+        /// Starts requesting the Raspberry Pi for result by running the background worker
+        /// </summary>
         public void StartRequesting()
         {
             if (!RequestWorker.IsBusy)
@@ -80,11 +83,15 @@ namespace TheLighthouse
             }
         }
 
+        /// <summary>
+        /// Stops requesting the Raspberry Pi for result by cancelling the background worker
+        /// </summary>
         public void StopRequesting()
         {
             if (RequestWorker.IsBusy)
             {
                 RequestWorker.CancelAsync();
+                while (RequestWorker.IsBusy) System.Threading.Thread.Sleep(10);
             }
         }
 
