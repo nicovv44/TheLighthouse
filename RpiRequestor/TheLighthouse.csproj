@@ -8,6 +8,10 @@
     <ApplicationIcon>LightHouse.ico</ApplicationIcon>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Nicolas VERHELST\source\repos\RpiRequestor\RpiRequestor\TheLighthouse.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>

@@ -95,16 +95,29 @@ namespace TheLighthouse
             }
         }
 
+        /// <summary>
+        /// The methode handling the <see cref="System.ComponentModel.BackgroundWorker.DoWork"/> event
+        /// <see cref="DoWorkEventHandler"/> of the <see cref="BackgroundWorker"/> <see cref="RequestWorker"/> <br/>
+        /// It gets a result from the Raspberry Pi and calls the function <see cref="ResultReadyCallback"/> if the result is not empty
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">A <see cref="System.ComponentModel.DoWorkEventArgs"/> that contains the event data.</param>
         private void RequestWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
             while (true)
             {
+                string result = "";
+                bool success = false;
                 lock (ResultLock)
                 {
-                    Result = Get(Uri);
+                    success = Get(Uri, out result);
                 }
-                if(Result.Length>0) ResultReadyCallback();
+                if (success && result.Length > 0)
+                {
+                    Result = result;
+                    ResultReadyCallback();
+                }
                 if (worker.CancellationPending)
                 {
                     return;
@@ -112,8 +125,15 @@ namespace TheLighthouse
             }
         }
 
-        private string Get(string uri)
+        /// <summary>
+        /// Send a GET request to the URI provided in argument output the response as a string
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="responseString">OUTPUT: the string of the response if properly retrieved, an empty string otherwise</param>
+        /// <returns><code>true</code> if the response is properly retrieved, <code>false</code> otherwise</returns>
+        private bool Get(string uri, out string responseString)
         {
+            responseString = "";
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
@@ -122,13 +142,14 @@ namespace TheLighthouse
                 using HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 using Stream stream = response.GetResponseStream();
                 using StreamReader reader = new StreamReader(stream);
-                return reader.ReadToEnd();
+                responseString = reader.ReadToEnd();
             }
             catch(Exception exception)
             {
                 Trace.WriteLine($"Exception in Requestor.Get(): '{exception.Message}'");
-                return "";
+                return false;
             }
+            return true;
         }
     }
 }

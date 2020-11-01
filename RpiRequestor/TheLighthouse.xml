@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TheLighthouse</name>
+    </assembly>
+    <members>
+        <member name="T:TheLighthouse.FormGetRpiUri">
+            <summary>
+            The class of a form used to ask a URI to the user
+            </summary>
+        </member>
+        <member name="P:TheLighthouse.FormGetRpiUri.Uri">
+            <summary>
+            The URI property used as form output
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.FormGetRpiUri.#ctor(System.String)">
+            <summary>
+            Constructor of the class <see cref="T:TheLighthouse.FormGetRpiUri"/> 
+            </summary>
+            <param name="defaultUri">The default URI to display in the texbox</param>
+        </member>
+        <member name="M:TheLighthouse.FormGetRpiUri.TextBoxUri_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            The function called when the text in URI textbox is changed
+            </summary>
+            <param name="sender">The <see cref="T:System.Windows.Forms.TextBox"/> sending the event</param>
+            <param name="e">The data from the textbox</param>
+        </member>
+        <member name="M:TheLighthouse.FormGetRpiUri.ButtonOk_Click(System.Object,System.EventArgs)">
+            <summary>
+            The function called when the OK button is clicked: it closes the form
+            </summary>
+            <param name="sender">The <see cref="T:System.Windows.Forms.Button"/> sending the event</param>
+            <param name="e">The data from the button</param>
+        </member>
+        <member name="F:TheLighthouse.FormGetRpiUri.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.FormGetRpiUri.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TheLighthouse.FormGetRpiUri.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.FormLightHouse.Requestor">
+            <summary>
+            The requestor sending queries to the raspberry pi
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.FormLightHouse.FreshnessStopwatch">
+            <summary>
+            The stopwatch responsible to count the time alapsed since a new result was received
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.FormLightHouse.FreshnessStopwatchLock">
+            <summary>
+            The lock on the variable <see cref="F:TheLighthouse.FormLightHouse.FreshnessStopwatch"/>
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.FormLightHouse.CheckFreshnessWorker">
+            <summary>
+            The <see cref="T:System.ComponentModel.BackgroundWorker"/> responsible to check the value of <see cref="F:TheLighthouse.FormLightHouse.FreshnessStopwatch"/> 
+            and displays a different color if nothing is recived after waiting some time
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.#ctor(System.String)">
+            <summary>
+            Constructor of the class <see cref="T:TheLighthouse.FormLightHouse"/>
+            </summary>
+            <param name="uri">The Uri of the Raspberry Pi to query</param>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.UpdateGuiWithNewResult">
+            <summary>
+            To be called when <see cref="P:TheLighthouse.Requestor.Result"/> changes
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.CheckFreshnessWorker_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            <see cref="T:System.ComponentModel.DoWorkEventHandler"/> of the <see cref="F:TheLighthouse.FormLightHouse.CheckFreshnessWorker"/>
+            </summary>
+            <param name="sender">The sender of the event: the worker <see cref="F:TheLighthouse.FormLightHouse.CheckFreshnessWorker"/></param>
+            <param name="args">Data of the <see cref="T:System.ComponentModel.DoWorkEventHandler"/></param>
+        </member>
+        <member name="F:TheLighthouse.FormLightHouse.components">
+            <summary>
+             Required designer variable.
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.Dispose(System.Boolean)">
+            <summary>
+             Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.InitializeComponent">
+            <summary>
+             Required method for Designer support - do not modify
+             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.Program.Main">
+            <summary>
+             The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.Program.GetUri(System.String)">
+            <summary>
+            Ask the user to give the URI of the Raspberry Pi, with a form
+            </summary>
+            <param name="defaultUri">The default URI to place in the textbox when the for is open</param>
+            <returns></returns>
+        </member>
+        <member name="T:TheLighthouse.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:TheLighthouse.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:TheLighthouse.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:TheLighthouse.Properties.Resources.Uri">
+            <summary>
+              Looks up a localized string similar to http://192.168.45.118.
+            </summary>
+        </member>
+        <member name="T:TheLighthouse.Requestor">
+            <summary>
+            Class used to send queries to the Raspberry Pi, store the result, and inform the instiating class the result has changed
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.Requestor.Uri">
+            <summary>
+            The URI of the Raspberry Pi to connect to
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.Requestor.RequestWorker">
+            <summary>
+            The <see cref="T:System.ComponentModel.BackgroundWorker"/> used to send the request to the Raspberry Pi and store the result
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.Requestor._result">
+            <summary>
+            The private member (field) containing the result obtained from the Raspberry Pi
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.Requestor.ResultLock">
+            <summary>
+            Lock on the private memeber <see cref="F:TheLighthouse.Requestor._result"/> to avoid concurent accent when trying to read a result if a result bein retrieved from the network
+            </summary>
+        </member>
+        <member name="P:TheLighthouse.Requestor.Result">
+            <summary>
+            The public member (propety) containing the result obtained from the Raspberry Pi, and accessible from the outside of the class
+            </summary>
+        </member>
+        <member name="T:TheLighthouse.Requestor.ResultReady">
+            <summary>
+            Delegate of the funnction called wh
+            </summary>
+        </member>
+        <member name="F:TheLighthouse.Requestor.ResultReadyCallback">
+            <summary>
+            Function called when a new result is ready (result changed)
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.Requestor.#ctor(System.String,TheLighthouse.Requestor.ResultReady)">
+            <summary>
+            Constructor of the class <see cref="T:TheLighthouse.Requestor"/>
+            </summary>
+            <param name="uri">URI of the Raspberry Pi to connect to (such as "http://xxx.xxx.xxx.xxx")</param>
+            <param name="resultReadyCallback">Function of type <see cref="T:TheLighthouse.Requestor.ResultReady"/>, called when a new result is received</param>
+        </member>
+        <member name="M:TheLighthouse.Requestor.StartRequesting">
+            <summary>
+            Starts requesting the Raspberry Pi for result by running the background worker
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.Requestor.StopRequesting">
+            <summary>
+            Stops requesting the Raspberry Pi for result by cancelling the background worker
+            </summary>
+        </member>
+        <member name="M:TheLighthouse.Requestor.RequestWorker_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            The methode handling the <see cref="E:System.ComponentModel.BackgroundWorker.DoWork"/> event
+            <see cref="T:System.ComponentModel.DoWorkEventHandler"/> of the <see cref="T:System.ComponentModel.BackgroundWorker"/> <see cref="F:TheLighthouse.Requestor.RequestWorker"/> <br/>
+            It gets a result from the Raspberry Pi and calls the function <see cref="F:TheLighthouse.Requestor.ResultReadyCallback"/> if the result is not empty
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A <see cref="T:System.ComponentModel.DoWorkEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:TheLighthouse.Requestor.Get(System.String,System.String@)">
+            <summary>
+            Send a GET request to the URI provided in argument output the response as a string
+            </summary>
+            <param name="uri"></param>
+            <param name="responseString">OUTPUT: the string of the response if properly retrieved, an empty string otherwise</param>
+            <returns><code>true</code> if the response is properly retrieved, <code>false</code> otherwise</returns>
+        </member>
+    </members>
+</doc>
