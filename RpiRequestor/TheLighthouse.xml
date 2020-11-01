@@ -4,6 +4,16 @@
         <name>TheLighthouse</name>
     </assembly>
     <members>
+        <member name="T:TheLighthouse.Constant">
+            <summary>
+            Public class regrouping all the constants used in the software
+            </summary>
+        </member>
+        <member name="P:TheLighthouse.Constant.TimeoutFreshnessMs">
+            <summary>
+            Time to wait for a new result before considering that the connection is lost (millisecond)
+            </summary>
+        </member>
         <member name="T:TheLighthouse.FormGetRpiUri">
             <summary>
             The class of a form used to ask a URI to the user
