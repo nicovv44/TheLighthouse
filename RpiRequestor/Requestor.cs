@@ -104,6 +104,7 @@ namespace TheLighthouse
         /// <param name="e">A <see cref="System.ComponentModel.DoWorkEventArgs"/> that contains the event data.</param>
         private void RequestWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            bool ResultIsValid(bool success, string result) { return success && result.Length>0; }
             BackgroundWorker worker = sender as BackgroundWorker;
             while (true)
             {
@@ -112,11 +113,14 @@ namespace TheLighthouse
                 lock (ResultLock)
                 {
                     success = Get(Uri, out result);
-                    if (success && result.Length > 0)
+                    if (ResultIsValid(success, result))
                     {
                         Result = result;
-                        ResultReadyCallback();
                     }
+                }
+                if (ResultIsValid(success, result))
+                {
+                    ResultReadyCallback(); // This cannot be in the lock because it accesses Result via a lock, so it woud be a mutex
                 }
                 if (worker.CancellationPending)
                 {
