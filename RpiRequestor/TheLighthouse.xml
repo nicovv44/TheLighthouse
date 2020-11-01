@@ -93,10 +93,16 @@
             </summary>
             <param name="uri">The Uri of the Raspberry Pi to query</param>
         </member>
-        <member name="M:TheLighthouse.FormLightHouse.UpdateGuiWithNewResult">
+        <member name="M:TheLighthouse.FormLightHouse.ResultReadyCallback">
             <summary>
             To be called when <see cref="P:TheLighthouse.Requestor.Result"/> changes
             </summary>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.UpdateGuiWithNewResult(System.String)">
+            <summary>
+            Update the GUI components depending on the new result obtained from the Raspberry Pi
+            </summary>
+            <param name="result">The strinng of the result of the request sent to the Raspberry Pi</param>
         </member>
         <member name="M:TheLighthouse.FormLightHouse.CheckFreshnessWorker_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
             <summary>
@@ -104,6 +110,11 @@
             </summary>
             <param name="sender">The sender of the event: the worker <see cref="F:TheLighthouse.FormLightHouse.CheckFreshnessWorker"/></param>
             <param name="args">Data of the <see cref="T:System.ComponentModel.DoWorkEventHandler"/></param>
+        </member>
+        <member name="M:TheLighthouse.FormLightHouse.RestartFreshnessStopWatch">
+            <summary>
+            This function is called when a new result a received so a to reset the stopwatch
+            </summary>
         </member>
         <member name="F:TheLighthouse.FormLightHouse.components">
             <summary>
