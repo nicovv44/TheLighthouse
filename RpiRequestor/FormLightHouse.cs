@@ -14,10 +14,28 @@ namespace RpiRequestor
 {
     public partial class FormLightHouse : Form
     {
+        /// <summary>
+        /// The requestor sending queries to the raspberry pi
+        /// </summary>
         private readonly Requestor Requestor;
+        /// <summary>
+        /// The stopwatch responsible to count the time alapsed since a new result was received
+        /// </summary>
         private readonly Stopwatch FreshnessStopwatch;
+        /// <summary>
+        /// The lock on the variable <see cref="FreshnessStopwatch"/>
+        /// </summary>
         private readonly object FreshnessStopwatchLock = new object();
+        /// <summary>
+        /// The <see cref="BackgroundWorker"/> responsible to check the value of <see cref="FreshnessStopwatch"/> 
+        /// and displays a different color if nothing is recived after waiting some time
+        /// </summary>
         private readonly BackgroundWorker CheckFreshnessWorker;
+
+        /// <summary>
+        /// Constructor of the class <see cref="FormLightHouse"/>
+        /// </summary>
+        /// <param name="uri">The Uri of the Raspberry Pi to query</param>
         public FormLightHouse(string uri)
         {
             // Initialise non GUI
@@ -35,6 +53,9 @@ namespace RpiRequestor
             CheckFreshnessWorker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// To be called when <see cref="Requestor.Result"/> changes
+        /// </summary>
         void UpdateGuiWithNewResult()
         {
             Trace.WriteLine($"Result: {Requestor.Result}");
@@ -56,6 +77,11 @@ namespace RpiRequestor
             }
         }
 
+        /// <summary>
+        /// <see cref="DoWorkEventHandler"/> of the <see cref="CheckFreshnessWorker"/>
+        /// </summary>
+        /// <param name="sender">The sender of the event: the worker <see cref="CheckFreshnessWorker"/></param>
+        /// <param name="args">Data of the <see cref="DoWorkEventHandler"/></param>
         private void CheckFreshnessWorker_DoWork(object sender, DoWorkEventArgs args)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
