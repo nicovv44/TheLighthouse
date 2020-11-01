@@ -1,4 +1,4 @@
-﻿namespace RpiRequestor
+﻿namespace TheLighthouse
 {
     partial class FormLightHouse
     {

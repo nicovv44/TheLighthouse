@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RpiRequestor
+namespace TheLighthouse
 {
     public partial class FormLightHouse : Form
     {
@@ -93,7 +93,7 @@ namespace RpiRequestor
                     timeElapsedSinceLastResultRefresh = FreshnessStopwatch.ElapsedMilliseconds;
                 }
 
-                if (timeElapsedSinceLastResultRefresh > 1000) // If we don't refresh the resut in 1 second, we go transparent
+                if (timeElapsedSinceLastResultRefresh > Constant.TimeoutFreshnessMs) 
                 {
                     panelColourSign.BackColor = Color.Transparent;
                     RestartFreshnessStopWatch();

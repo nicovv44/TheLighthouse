@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RpiRequestor
+namespace TheLighthouse
 {
     static class Program
     {
@@ -17,7 +17,7 @@ namespace RpiRequestor
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string uri = GetUri(TheLighthouse.Properties.Resources.Uri);
+            string uri = GetUri(Properties.Resources.Uri);
             FormLightHouse form1 = new FormLightHouse(uri) { TopMost = true };
             Application.Run(form1);
         }

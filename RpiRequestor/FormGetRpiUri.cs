@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace RpiRequestor
+namespace TheLighthouse
 {
     public partial class FormGetRpiUri : Form
     {
