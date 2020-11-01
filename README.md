@@ -4,12 +4,12 @@ This desktop application is meant to be used with a Raspberry Pi to display on a
 
 The idea is to use this window color as a discrete signal when someone (your boss?) enters the room.
 
-## Colors
+### Colors
 
-- Green: The API sent 0 because the voltage at the board pin 16 is low
-- Red: The API sent 1 because the voltage at the board pin 16 is high
-- Black: The API sent something but it couldn't be recognised
-- Grey/transparent: Nothing was received from the API in the last 1 second
+- **Green**: The API sent 0 because the voltage at the board pin 16 is low
+- **Red**: The API sent 1 because the voltage at the board pin 16 is high
+- **Black**: The API sent something but it couldn't be recognised
+- **Grey/transparent**: Nothing was received from the API in the last 1 second
 
 ## Installing / Getting started
 
@@ -36,6 +36,18 @@ The idea is to use this window color as a discrete signal when someone (your bos
 - The window is set to TopMost: the winndow will always be on top of the other windows
 - If a color is present is has a meaning: the app is constantly checking for new information from the Raspberry Pi. If nothing is received it becomes grey/transparent
 - The Uri Uri of the Raspberry Pi is saved from a start to another
+
+## Contributing
+
+If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+If you'd like to modify the API you can modify the function *private void UpdateGuiWithNewResult(string result)*: https://github.com/nicovv44/TheLighthouse/blob/05a2df3255cd8e1d0021cb726619e4715afe4ade/RpiRequestor/Forms/FormLightHouse.cs#L69
+
+## Links
+
+- Project homepage: https://github.com/nicovv44/TheLighthouse
+- Issue tracker: https://github.com/nicovv44/TheLighthouse/issues
+  - In case of sensitive bugs like security vulnerabilities, please contact nicolas.nv.verhelst@gmail.com directly instead of using issue tracker. We value your effort to improve the security and privacy of this project!
 
 # Licenseing
 
