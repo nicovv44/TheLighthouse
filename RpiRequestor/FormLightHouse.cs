@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
@@ -36,7 +37,7 @@ namespace TheLighthouse
         public FormLightHouse(string uri)
         {
             // Initialise non GUI
-            Requestor = new Requestor(uri, UpdateGuiWithNewResult);
+            Requestor = new Requestor(uri, ResultReadyCallback);
             FreshnessStopwatch = new Stopwatch();
             CheckFreshnessWorker = new BackgroundWorker();
             CheckFreshnessWorker.DoWork += new DoWorkEventHandler(CheckFreshnessWorker_DoWork);
@@ -54,25 +55,25 @@ namespace TheLighthouse
         /// <summary>
         /// To be called when <see cref="Requestor.Result"/> changes
         /// </summary>
-        void UpdateGuiWithNewResult()
+        void ResultReadyCallback()
         {
-            Trace.WriteLine($"Result: {Requestor.Result}");
-            string result = Requestor.Result;
-            switch (result)
+            Trace.WriteLine($"Result: {Requestor.Result}"); 
+            RestartFreshnessStopWatch();
+            UpdateGuiWithNewResult(Requestor.Result);            
+        }
+
+        /// <summary>
+        /// Update the GUI components depending on the new result obtained from the Raspberry Pi
+        /// </summary>
+        /// <param name="result">The strinng of the result of the request sent to the Raspberry Pi</param>
+        private void UpdateGuiWithNewResult(string result)
+        {
+            panelColourSign.BackColor = result switch // TODO: that is the place to edit when the API on the Raspberry Pi changes (to consider ditance for instance)
             {
-                case "{\"Button\": 0}":
-                    panelColourSign.BackColor = Color.Green;
-                    RestartFreshnessStopWatch();
-                    break;
-                case "{\"Button\": 1}":
-                    panelColourSign.BackColor = Color.Red;
-                    RestartFreshnessStopWatch();
-                    break;
-                default:
-                    panelColourSign.BackColor = Color.Black;
-                    RestartFreshnessStopWatch();
-                    break;
-            }
+                "{\"Button\": 0}" => Color.Green,
+                "{\"Button\": 1}" => Color.Red,
+                _ => Color.Black,
+            };
         }
 
         /// <summary>
@@ -106,6 +107,9 @@ namespace TheLighthouse
             }
         }
 
+        /// <summary>
+        /// This function is called when a new result a received so a to reset the stopwatch
+        /// </summary>
         private void RestartFreshnessStopWatch()
         {
             lock (FreshnessStopwatchLock)
