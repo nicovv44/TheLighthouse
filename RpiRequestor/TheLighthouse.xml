@@ -14,6 +14,11 @@
             Time to wait for a new result before considering that the connection is lost (millisecond)
             </summary>
         </member>
+        <member name="P:TheLighthouse.Constant.DefaultUri">
+            <summary>
+            Default URI to use when no URI is saved in the ressources
+            </summary>
+        </member>
         <member name="T:TheLighthouse.FormGetRpiUri">
             <summary>
             The class of a form used to ask a URI to the user
@@ -138,11 +143,10 @@
              The main entry point for the application.
             </summary>
         </member>
-        <member name="M:TheLighthouse.Program.GetUri(System.String)">
+        <member name="M:TheLighthouse.Program.GetUri">
             <summary>
             Ask the user to give the URI of the Raspberry Pi, with a form
             </summary>
-            <param name="defaultUri">The default URI to place in the textbox when the for is open</param>
             <returns></returns>
         </member>
         <member name="T:TheLighthouse.Properties.Resources">
@@ -159,11 +163,6 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:TheLighthouse.Properties.Resources.Uri">
-            <summary>
-              Looks up a localized string similar to http://192.168.45.118.
             </summary>
         </member>
         <member name="T:TheLighthouse.Requestor">

@@ -17,7 +17,7 @@ namespace TheLighthouse
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string uri = GetUri(Properties.Resources.Uri);
+            string uri = GetUri();
             FormLightHouse form1 = new FormLightHouse(uri);
             Application.Run(form1);
         }
@@ -25,10 +25,16 @@ namespace TheLighthouse
         /// <summary>
         /// Ask the user to give the URI of the Raspberry Pi, with a form
         /// </summary>
-        /// <param name="defaultUri">The default URI to place in the textbox when the for is open</param>
         /// <returns></returns>
-        static string GetUri(string defaultUri)
+        static string GetUri()
         {
+            string defaultUri = Settings1.Default.Uri;
+            if (defaultUri.Length == 0) 
+            {
+                defaultUri = Constant.DefaultUri;
+                Settings1.Default.Uri = Constant.DefaultUri;
+                Settings1.Default.Save();
+            }
             using var form = new FormGetRpiUri(defaultUri);
             var result = form.ShowDialog();
             return form.Uri;

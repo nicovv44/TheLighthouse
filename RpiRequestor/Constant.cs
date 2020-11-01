@@ -10,5 +10,10 @@ namespace TheLighthouse
         /// Time to wait for a new result before considering that the connection is lost (millisecond)
         /// </summary>
         public static int TimeoutFreshnessMs => 1000;
+
+        /// <summary>
+        /// Default URI to use when no URI is saved in the ressources
+        /// </summary>
+        public static string DefaultUri => "http://192.168.45.118";
     }
 }

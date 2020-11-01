@@ -30,6 +30,8 @@ namespace TheLighthouse
         private void TextBoxUri_TextChanged(object sender, EventArgs e)
         {
             Uri = (sender as TextBox).Text;
+            Settings1.Default.Uri = (sender as TextBox).Text;
+            Settings1.Default.Save();
         }
 
         /// <summary>

@@ -59,14 +59,5 @@ namespace TheLighthouse.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to http://192.168.45.118.
-        /// </summary>
-        internal static string Uri {
-            get {
-                return ResourceManager.GetString("Uri", resourceCulture);
-            }
-        }
     }
 }
