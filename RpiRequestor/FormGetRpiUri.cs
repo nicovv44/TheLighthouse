@@ -41,6 +41,7 @@ namespace TheLighthouse
         /// <param name="e">The data from the button</param>
         private void ButtonOk_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Close();
         }
     }

@@ -143,11 +143,12 @@
              The main entry point for the application.
             </summary>
         </member>
-        <member name="M:TheLighthouse.Program.GetUri">
+        <member name="M:TheLighthouse.Program.GetUri(System.String@)">
             <summary>
             Ask the user to give the URI of the Raspberry Pi, with a form
             </summary>
-            <returns></returns>
+            <param name="uri">OUTPUT: the URI of the Raspbarry Pi if the function returned <c>true</c>, empty string otherwise</param>
+            <returns><code>true</code> if successfully recovered URI from user, <code>false</code>otherwise</returns>
         </member>
         <member name="T:TheLighthouse.Properties.Resources">
             <summary>
