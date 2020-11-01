@@ -8,12 +8,30 @@ using System.Text;
 
 namespace TheLighthouse
 {
+    /// <summary>
+    /// Class used to send queries to the Raspberry Pi, store the result, and inform the instiating class the result has changed
+    /// </summary>
     class Requestor
     {
+        /// <summary>
+        /// The URI of the Raspberry Pi to connect to
+        /// </summary>
         private readonly string Uri;
+        /// <summary>
+        /// The <see cref="BackgroundWorker"/> used to send the request to the Raspberry Pi and store the result
+        /// </summary>
         private readonly BackgroundWorker RequestWorker;
+        /// <summary>
+        /// The private member (field) containing the result obtained from the Raspberry Pi
+        /// </summary>
         private string _result;
+        /// <summary>
+        /// Lock on the private memeber <see cref="_result"/> to avoid concurent accent when trying to read a result if a result bein retrieved from the network
+        /// </summary>
         private readonly object ResultLock = new object();
+        /// <summary>
+        /// The public member (propety) containing the result obtained from the Raspberry Pi, and accessible from the outside of the class
+        /// </summary>
         public string Result 
         { 
             get 
@@ -31,12 +49,20 @@ namespace TheLighthouse
                 }
             } 
         }
+        /// <summary>
+        /// Delegate of the funnction called wh
+        /// </summary>
         public delegate void ResultReady();
         /// <summary>
-        /// Function called when a new result is ready
+        /// Function called when a new result is ready (result changed)
         /// </summary>
         private readonly ResultReady ResultReadyCallback;
 
+        /// <summary>
+        /// Constructor of the class <see cref="Requestor"/>
+        /// </summary>
+        /// <param name="uri">URI of the Raspberry Pi to connect to (such as "http://xxx.xxx.xxx.xxx")</param>
+        /// <param name="resultReadyCallback">Function of type <see cref="ResultReady"/>, called when a new result is received</param>
         public Requestor(string uri, ResultReady resultReadyCallback = null)
         {
             Uri = uri;

@@ -22,6 +22,11 @@ namespace TheLighthouse
             Application.Run(form1);
         }
 
+        /// <summary>
+        /// Ask the user to give the URI of the Raspberry Pi, with a form
+        /// </summary>
+        /// <param name="defaultUri">The default URI to place in the textbox when the for is open</param>
+        /// <returns></returns>
         static string GetUri(string defaultUri)
         {
             using var form = new FormGetRpiUri(defaultUri);
