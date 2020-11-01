@@ -112,11 +112,11 @@ namespace TheLighthouse
                 lock (ResultLock)
                 {
                     success = Get(Uri, out result);
-                }
-                if (success && result.Length > 0)
-                {
-                    Result = result;
-                    ResultReadyCallback();
+                    if (success && result.Length > 0)
+                    {
+                        Result = result;
+                        ResultReadyCallback();
+                    }
                 }
                 if (worker.CancellationPending)
                 {
