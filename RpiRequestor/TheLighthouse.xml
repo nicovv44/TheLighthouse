@@ -61,6 +61,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:TheLighthouse.FormLightHouse">
+            <summary>
+            Form of the light house remaining laways on top and indicates info depending on the color of its <see cref="F:TheLighthouse.FormLightHouse.panelColourSign"/>
+            </summary>
+        </member>
         <member name="F:TheLighthouse.FormLightHouse.Requestor">
             <summary>
             The requestor sending queries to the raspberry pi

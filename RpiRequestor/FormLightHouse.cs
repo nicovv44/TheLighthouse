@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace TheLighthouse
 {
+    /// <summary>
+    /// Form of the light house remaining laways on top and indicates info depending on the color of its <see cref="panelColourSign"/>
+    /// </summary>
     public partial class FormLightHouse : Form
     {
         /// <summary>
@@ -37,9 +40,10 @@ namespace TheLighthouse
             FreshnessStopwatch = new Stopwatch();
             CheckFreshnessWorker = new BackgroundWorker();
             CheckFreshnessWorker.DoWork += new DoWorkEventHandler(CheckFreshnessWorker_DoWork);
-
+            
             // Initialize GUI
             InitializeComponent();
+            TopMost = true;
 
             //Start actions
             Requestor.StartRequesting();

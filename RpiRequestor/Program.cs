@@ -18,7 +18,7 @@ namespace TheLighthouse
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             string uri = GetUri(Properties.Resources.Uri);
-            FormLightHouse form1 = new FormLightHouse(uri) { TopMost = true };
+            FormLightHouse form1 = new FormLightHouse(uri);
             Application.Run(form1);
         }
 
