@@ -18,6 +18,10 @@ namespace TheLighthouse
         /// </summary>
         private readonly string Uri;
         /// <summary>
+        /// The request period used in between two GET requests
+        /// </summary>
+        private readonly int RequestPeriod;
+        /// <summary>
         /// The <see cref="BackgroundWorker"/> used to send the request to the Raspberry Pi and store the result
         /// </summary>
         private readonly BackgroundWorker RequestWorker;
@@ -63,9 +67,10 @@ namespace TheLighthouse
         /// </summary>
         /// <param name="uri">URI of the Raspberry Pi to connect to (such as "http://xxx.xxx.xxx.xxx")</param>
         /// <param name="resultReadyCallback">Function of type <see cref="ResultReady"/>, called when a new result is received</param>
-        public Requestor(string uri, ResultReady resultReadyCallback = null)
+        public Requestor(string uri, int requestPeriod, ResultReady resultReadyCallback = null)
         {
             Uri = uri;
+            RequestPeriod = requestPeriod;
             Result = default;
             RequestWorker = new BackgroundWorker { WorkerSupportsCancellation = true };
             RequestWorker.DoWork += new DoWorkEventHandler(RequestWorker_DoWork);
@@ -104,7 +109,7 @@ namespace TheLighthouse
         /// <param name="e">A <see cref="System.ComponentModel.DoWorkEventArgs"/> that contains the event data.</param>
         private void RequestWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            bool ResultIsValid(bool success, string result) { return success && result.Length>0; }
+            static bool ResultIsValid(bool success, string result) { return success && result.Length>0; }
             BackgroundWorker worker = sender as BackgroundWorker;
             while (true)
             {
@@ -122,6 +127,7 @@ namespace TheLighthouse
                 {
                     ResultReadyCallback(); // This cannot be in the lock because it accesses Result via a lock, so it woud be a mutex
                 }
+                System.Threading.Thread.Sleep(RequestPeriod);
                 if (worker.CancellationPending)
                 {
                     return;

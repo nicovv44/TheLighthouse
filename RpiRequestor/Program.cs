@@ -43,5 +43,19 @@ namespace TheLighthouse
             uri = form.Uri;
             return true;
         }
+
+        /// <summary>
+        /// Ask the user to give the limit in meters to use, with a form
+        /// </summary>
+        /// <param name="uri">OUTPUT: the limit inn meter to use if the function returned <c>true</c>, 0 otherwise</param>
+        /// <returns><code>true</code> if successfully recovered limit, <code>false</code>otherwise</returns>
+        public static bool GetLimitMeter(out float limitMeter)
+        {
+            limitMeter = 0;
+            using var form = new Forms.FormGetLimit();
+            var result = form.ShowDialog();
+            limitMeter = form.Limit;
+            return true;
+        }
     }
 }

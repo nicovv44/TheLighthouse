@@ -29,6 +29,7 @@ namespace TheLighthouse
         /// and displays a different color if nothing is recived after waiting some time
         /// </summary>
         private readonly BackgroundWorker CheckFreshnessWorker;
+        private float LimitMeter { get;  set; }
 
         /// <summary>
         /// Constructor of the class <see cref="FormLightHouse"/>
@@ -37,11 +38,13 @@ namespace TheLighthouse
         public FormLightHouse(string uri)
         {
             // Initialise non GUI
-            Requestor = new Requestor(uri, ResultReadyCallback);
+            Requestor = new Requestor(uri, Constant.RequestPeriod, ResultReadyCallback);
             FreshnessStopwatch = new Stopwatch();
             CheckFreshnessWorker = new BackgroundWorker();
             CheckFreshnessWorker.DoWork += new DoWorkEventHandler(CheckFreshnessWorker_DoWork);
-            
+            if (Program.GetLimitMeter(out float limit)) LimitMeter = limit;
+            else LimitMeter = 0;
+
             // Initialize GUI
             InitializeComponent();
             TopMost = true;
@@ -68,12 +71,15 @@ namespace TheLighthouse
         /// <param name="result">The strinng of the result of the request sent to the Raspberry Pi</param>
         private void UpdateGuiWithNewResult(string result)
         {
-            panelColourSign.BackColor = result switch // TODO: that is the place to edit when the API on the Raspberry Pi changes (to consider ditance for instance)
+            if(float.TryParse(result, out float distanceMeter))
             {
-                "{\"Button\": 0}" => Color.Green,
-                "{\"Button\": 1}" => Color.Red,
-                _ => Color.Black,
-            };
+                panelColourSign.BackColor = distanceMeter < LimitMeter ? Color.Red  : Color.Green;
+            }
+            else
+            {
+                Trace.WriteLine("Could not parse result");
+                panelColourSign.BackColor = Color.Black;
+            }
         }
 
         /// <summary>
