@@ -25,6 +25,8 @@ namespace TheLighthouse.Forms
         public FormGetLimit()
         {
             InitializeComponent();
+
+            textBoxLimit.Text = Settings1.Default.LimitMeter.ToString();
         }
 
         private void ButtonOk_Click(object sender, EventArgs e)
@@ -36,6 +38,8 @@ namespace TheLighthouse.Forms
         {
             ValidLimit = float.TryParse((sender as TextBox).Text, out float limit);
             Limit = limit;
+            Settings1.Default.LimitMeter = limit;
+            Settings1.Default.Save();
         }
     }
 }

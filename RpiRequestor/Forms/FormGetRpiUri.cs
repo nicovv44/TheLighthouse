@@ -18,6 +18,7 @@ namespace TheLighthouse
         /// <param name="defaultUri">The default URI to display in the texbox</param>
         public FormGetRpiUri(string defaultUri)
         {
+            // Initialize GUI
             InitializeComponent();
             textBoxUri.Text = defaultUri;
         }

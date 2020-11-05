@@ -34,5 +34,17 @@ namespace TheLighthouse {
                 this["Uri"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public float LimitMeter {
+            get {
+                return ((float)(this["LimitMeter"]));
+            }
+            set {
+                this["LimitMeter"] = value;
+            }
+        }
     }
 }
