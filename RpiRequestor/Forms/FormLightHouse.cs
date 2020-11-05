@@ -56,6 +56,15 @@ namespace TheLighthouse
         }
 
         /// <summary>
+        /// Used to avoid cross threading
+        /// </summary>
+        /// <param name="func">The action to invoke</param>
+        private void RunOnUIThread(Action func)
+        {
+            Invoke(func);
+        }
+
+        /// <summary>
         /// To be called when <see cref="Requestor.Result"/> changes
         /// </summary>
         void ResultReadyCallback()
@@ -73,12 +82,32 @@ namespace TheLighthouse
         {
             if(float.TryParse(result, out float distanceMeter))
             {
-                panelColourSign.BackColor = distanceMeter < LimitMeter ? Color.Red  : Color.Green;
+                if(distanceMeter < LimitMeter)
+                {
+                    RunOnUIThread(() =>
+                    {
+                        panelColourSign.BackColor = Color.Red;
+                        CenterToScreen();
+                        Thread.Sleep(200);
+                        WindowState = FormWindowState.Minimized; // doesn't work
+                    });
+
+                }
+                else
+                {
+                    RunOnUIThread(() =>
+                    {
+                        panelColourSign.BackColor = Color.Green;
+                    });
+                }
             }
             else
             {
                 Trace.WriteLine("Could not parse result");
-                panelColourSign.BackColor = Color.Black;
+                RunOnUIThread(() =>
+                {
+                    panelColourSign.BackColor = Color.Black;
+                });
             }
         }
 
