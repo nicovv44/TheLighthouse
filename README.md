@@ -1,5 +1,7 @@
 # TheLighthouse
 
+![ScreenshotLighthouse1](ScreenshotLighthouse1.png)
+
 This desktop application is meant to be used with a Raspberry Pi to display on a remote computer a window with a color depending on the level of the board pin 16 of the Raspberry Pi.
 
 The idea is to use this window color as a discrete signal when someone (your boss?) enters the room.
